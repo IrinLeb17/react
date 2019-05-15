@@ -1,6 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom';
+import logo from '../logo.svg';
+import './../styles/Style.css';
+import TodoList from './TodoList/';
+
 
 function App() {
   return (
@@ -18,9 +21,15 @@ function App() {
         >
           Learn React
         </a>
+        {/* <div id="headerContent"></div> */}
       </header>
-    </div>
+      <TodoList/>
+        
+      </div>
   );
 }
+
+// ReactDOM.render(<TodoList/>, document.getElementById('todoList'));
+
 
 export default App;
