@@ -2,9 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/Style.css'; 
 import App from './containers/App.js';
-// import Header from './containers/Header/index';
-// import TodoList from './containers/TodoList/index';
-
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -1,35 +1,52 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import logo from '../logo.svg';
 import './../styles/Style.css';
 import TodoList from './TodoList/';
+import BtnPlus from '../components/buttons/BtnPlus';
+import TextTask from '../components/buttons/TextTask';
 
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {/* <div id="headerContent"></div> */}
-      </header>
-      <TodoList/>
-        
+class App extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      open: false,
+      field: '',
+      items: []
+    }
+  }
+
+  showField = () => {
+      let state = this.state;
+      if(state.open && state.field.length != 0) {
+        state.items.push(state.field);
+      }
+      this.setState({open: !state.open});
+      this.setState({field: ''});
+  }
+
+  addTaskText = (e) => {
+      this.setState({field: e.target.value});
+  }
+
+  removeTask = (e) => {
+    this.state.items.splice(e, 1);
+    this.setState({items: this.state.items});
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <TodoList items={this.state.items} removeTask={this.removeTask}/>
+        <div className="wrapBtns">
+          <BtnPlus showField={() => this.showField()} open={this.state.open} />
+          <TextTask open={this.state.open} addTaskText={this.addTaskText} field={this.state.field}/>
+        </div>
       </div>
-  );
+    );
+  }
 }
-
-// ReactDOM.render(<TodoList/>, document.getElementById('todoList'));
 
 
 export default App;
