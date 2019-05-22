@@ -5,7 +5,7 @@ class BtnPlus extends Component {
     render() {
 
         return (
-            <button onClick={this.props.showField}>{this.props.open ? 'Add' : '+ New Task'}</button>
+            <button onClick={this.props.addTask}>{this.props.open ? 'Add' : '+ New Task'}</button>
         )
     }
 }
